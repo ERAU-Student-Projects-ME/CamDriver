@@ -1,9 +1,10 @@
 # Example parameter file, see parameters_launch.py
 
 # Format is namespace_name/node_name
-my_camera/gscam_publisher:
+/kevin/camera/gscam_publisher:
   ros__parameters:
-    gscam_config: 'videotestsrc ! video/x-raw, format=BGRx ! videoconvert'
+    gscam_config: 'nvarguscamerasrc sensor-id=0 sensor-mode=2 ! video/x-raw(memory:NVMM),width=1920,height=1080,framerate=72/1,format=NV12 ! nvvidconv ! video/x-raw,format=I420 ! nvjpegenc'
     preroll: False
+    image_encoding: 'jpeg'
     use_gst_timestamps: False
-    frame_id: 'my_camera_frame'
+    frame_id: 'kevin_camera_link'

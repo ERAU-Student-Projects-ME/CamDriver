@@ -7,7 +7,7 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 
 # Your camera namespace
-camera_name = 'my_camera'
+camera_name = 'kevin/camera'
 
 # Location of configuration directory
 config_dir = os.path.join(get_package_share_directory('gscam2'), 'cfg')
