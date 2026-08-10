@@ -3,7 +3,7 @@
 # Format is namespace_name/node_name
 /kevin/camera/gscam_publisher:
   ros__parameters:
-    gscam_config: 'nvarguscamerasrc sensor-id=0 sensor-mode=2 ! video/x-raw(memory:NVMM),width=1920,height=1080,framerate=72/1,format=NV12 ! nvvidconv ! video/x-raw,format=I420 ! nvjpegenc'
+    gscam_config: 'nvarguscamerasrc sensor-id=0 sensor-mode=0 ! video/x-raw(memory:NVMM),width=3840,height=2160,framerate=60/1,format=NV12 ! nvvidconv ! video/x-raw,format=I420 ! nvjpegenc'
     preroll: False
     image_encoding: 'jpeg'
     use_gst_timestamps: False
