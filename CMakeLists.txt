@@ -32,6 +32,8 @@ find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
 find_package(rclpy REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(cv_bridge REQUIRED)
+find_package(OpenCV REQUIRED)
 
 # Create ament index resource which references the libraries in the binary dir
 set(node_plugins "")
@@ -118,6 +120,19 @@ target_link_libraries(ipc_test_main
     gscam2::subscriber_node
     sensor_msgs::sensor_msgs_library)
 
+add_executable(compress_image src/compress_image.cpp)
+ament_target_dependencies(compress_image PUBLIC
+  rclcpp
+  sensor_msgs
+  cv_bridge
+)
+target_include_directories(compress_image PRIVATE
+  ${OpenCV_INCLUDE_DIRS}
+)
+target_link_libraries(compress_image PRIVATE
+  ${OpenCV_LIBRARIES}
+)
+
 #=============
 # Test
 #=============
@@ -152,7 +167,7 @@ install(TARGETS gscam_node subscriber_node
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin)
 
-install(TARGETS gscam_main ipc_test_main
+install(TARGETS gscam_main ipc_test_main compress_image
   DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY cfg launch

@@ -24,7 +24,7 @@ print(camera_config)
 
 def generate_launch_description():
 
-    node = Node(
+    gscam_node = Node(
         package='gscam2',
         executable='gscam_main',
         output='screen',
@@ -46,4 +46,12 @@ def generate_launch_description():
         ],
     )
 
-    return LaunchDescription([node])
+    compress_node = Node(
+        package='gscam2',
+        executable='compress_image',
+        output='screen',
+        name='gscam_compress_image_publisher',
+        namespace=camera_name,
+    )
+
+    return LaunchDescription([gscam_node, compress_node])
