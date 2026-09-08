@@ -14,11 +14,11 @@ config_dir = os.path.join(get_package_share_directory('gscam2'), 'cfg')
 print(config_dir)
 
 # Parameters file
-params_file = os.path.join(config_dir, 'params.yaml')
+params_file = os.path.join(config_dir, 'kevin_camera_params.yaml')
 print(params_file)
 
 # Camera calibration file
-camera_config = 'file://' + os.path.join(config_dir, 'my_camera.ini')
+camera_config = 'file://' + os.path.join(config_dir, 'kevin_camera.ini')
 print(camera_config)
 
 
@@ -52,6 +52,11 @@ def generate_launch_description():
         output='screen',
         name='gscam_compress_image_publisher',
         namespace=camera_name,
+        # Remap outputs to the correct namespace
+        remappings=[
+            ('/image_raw', '/' + camera_name + '/image_raw'),
+            ('/image_raw/compressed', '/' + camera_name + '/image_raw/compressed'),
+        ],
     )
 
     return LaunchDescription([gscam_node, compress_node])

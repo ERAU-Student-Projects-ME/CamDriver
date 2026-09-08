@@ -16,14 +16,14 @@ public:
 
     // Subscriber with SensorDataQoS
     image_sub_ = this->create_subscription<sensor_msgs::msg::Image>(
-      "/kevin/camera/image_raw",
+      "/image_raw",
       sensor_qos,
       std::bind(&ImageCompressorNode::imageCallback, this, std::placeholders::_1)
     );
 
     // Compressed Image Publisher
     compressed_pub_ = this->create_publisher<sensor_msgs::msg::CompressedImage>(
-      "/kevin/camera/image_raw/compressed",
+      "/image_raw/compressed",
       sensor_qos
     );
 
