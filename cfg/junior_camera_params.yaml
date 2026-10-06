@@ -11,4 +11,4 @@
     ## For compressed image
 #    image_encoding: 'jpeg'
     use_gst_timestamps: False
-    frame_id: 'junior_camera_link'
+    frame_id: 'junior_camera_optical_link'
